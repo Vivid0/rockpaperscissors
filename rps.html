@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <script>
+
+        let rpsChoices = [`rock`, `paper`, `scissors`];
+
+        function computerPlay() {
+            let computerInput = rpsChoices[Math.floor(Math.random() * rpsChoices.length)];
+            return computerInput;
+        }
+
+        function playerPlay() {
+            let playerInput = prompt(`Make a selection: Rock, Paper, Scissors`);
+            playerInput = playerInput.toLowerCase();
+
+            while (!rpsChoices.includes(playerInput)) {
+                alert(`You did not type a valid selection.  Please type Rock, Paper or Scissors.  Selections are not case sensative.`)
+                playerInput = prompt(`Make a selection: Rock, Paper, Scissors`);
+                playerInput = playerInput.toLowerCase();
+            }
+
+            return playerInput;
+
+        }
+
+        function playRound(computerSelection, playerSelection) {
+            let result;
+            if (computerSelection == playerSelection) {
+                result = `tie`;
+                console.log(`Player: ` + playerSelection);
+                console.log(`Computer: ` + computerSelection);
+                console.log(`It's a tie! Replay the round.`);
+                return result;
+            } else if (
+                (computerSelection == `rock` && playerSelection == `scissors`) ||
+                (computerSelection == `scissors` && playerSelection == `paper`) ||
+                (computerSelection == `paper` && playerSelection == `rock`)
+            ) {
+                computerSelection = computerSelection.substr(0, 1).toUpperCase() + computerSelection.substr(1);
+                result = `computer`;
+                console.log(`Player: ` + playerSelection);
+                console.log(`Computer: ` + computerSelection.toLowerCase());
+                console.log(`You lost this round.  ` + computerSelection + ` beats ` + playerSelection + `.`);
+                return result;
+            } else {
+                playerSelection = playerSelection.substr(0, 1).toUpperCase() + playerSelection.substr(1);
+                result = `player`;
+                console.log(`Player: ` + playerSelection.toLowerCase());
+                console.log(`Computer: ` + computerSelection);
+                console.log(`You won this round.  ` + playerSelection + ` beats ` + computerSelection + `.`);
+                return result;
+            }
+        }
+
+        function game() {
+            let round = 1;
+            let computerScore = 0;
+            let playerScore = 0;
+
+            while (round <= 5) {
+                console.log(`Round: ` + round);
+
+                let roundResult = playRound(computerPlay(), playerPlay());
+                console.log(`Round Result:` + roundResult);
+
+                if (roundResult == `player`) {
+                    playerScore = ++playerScore;
+                    round = ++round;
+                } else if (roundResult == `computer`) {
+                    computerScore = ++computerScore;
+                    round = ++round;
+                }
+
+                console.log(`Computer Score:` + computerScore);
+                console.log(`Player Score:` + playerScore);
+            }
+
+            if (computerScore > playerScore) {
+                console.log(`The computer wins!`);
+            } else {
+                console.log(`You win!`);
+            }
+
+        }
+
+        game();
+
+    </script>
+</body>
+
+</html>
