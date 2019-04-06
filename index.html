@@ -4,94 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <script>
-
-        let rpsChoices = [`rock`, `paper`, `scissors`];
-
-        function computerPlay() {
-            let computerInput = rpsChoices[Math.floor(Math.random() * rpsChoices.length)];
-            return computerInput;
-        }
-
-        function playerPlay() {
-            let playerInput = prompt(`Make a selection: Rock, Paper, Scissors`);
-            playerInput = playerInput.toLowerCase();
-
-            while (!rpsChoices.includes(playerInput)) {
-                alert(`You did not type a valid selection.  Please type Rock, Paper or Scissors.  Selections are not case sensative.`)
-                playerInput = prompt(`Make a selection: Rock, Paper, Scissors`);
-                playerInput = playerInput.toLowerCase();
-            }
-
-            return playerInput;
-
-        }
-
-        function playRound(computerSelection, playerSelection) {
-            let result;
-            if (computerSelection == playerSelection) {
-                result = `tie`;
-                console.log(`Player: ` + playerSelection);
-                console.log(`Computer: ` + computerSelection);
-                console.log(`It's a tie! Replay the round.`);
-                return result;
-            } else if (
-                (computerSelection == `rock` && playerSelection == `scissors`) ||
-                (computerSelection == `scissors` && playerSelection == `paper`) ||
-                (computerSelection == `paper` && playerSelection == `rock`)
-            ) {
-                computerSelection = computerSelection.substr(0, 1).toUpperCase() + computerSelection.substr(1);
-                result = `computer`;
-                console.log(`Player: ` + playerSelection);
-                console.log(`Computer: ` + computerSelection.toLowerCase());
-                console.log(`You lost this round.  ` + computerSelection + ` beats ` + playerSelection + `.`);
-                return result;
-            } else {
-                playerSelection = playerSelection.substr(0, 1).toUpperCase() + playerSelection.substr(1);
-                result = `player`;
-                console.log(`Player: ` + playerSelection.toLowerCase());
-                console.log(`Computer: ` + computerSelection);
-                console.log(`You won this round.  ` + playerSelection + ` beats ` + computerSelection + `.`);
-                return result;
-            }
-        }
-
-        function game() {
-            let round = 1;
-            let computerScore = 0;
-            let playerScore = 0;
-
-            while (round <= 5) {
-                console.log(`Round: ` + round);
-
-                let roundResult = playRound(computerPlay(), playerPlay());
-
-                if (roundResult == `player`) {
-                    playerScore = ++playerScore;
-                    round = ++round;
-                } else if (roundResult == `computer`) {
-                    computerScore = ++computerScore;
-                    round = ++round;
-                }
-
-                console.log(`Computer Score:` + computerScore);
-                console.log(`Player Score:` + playerScore);
-            }
-
-            if (computerScore > playerScore) {
-                console.log(`The computer wins!`);
-            } else {
-                console.log(`You win!`);
-            }
-
-        }
-
-        game();
-
-    </script>
+    <!--
+    - 3 buttons/icons: 1 for each choice
+    - Use pictures (rather than words) as much as possibe
+    - Computer and Player avatars
+    - Score tracking underneath (or over) each avatar
+    - Round counter on top
+    - Simple picture explaining the rules
+    -->
+    <div id="playerWin"></div>
+    <div id="player">
+        <div id="player-items">
+            <img src="img/player.png" alt="Player Avatar" class="avatar">
+            <div id="playerScore" class="score">0</div>
+            <div class="buttons">
+                <button id="rock"><img src="img/rock.png" alt="Rock"></button>
+                <button id="paper"><img src="img/paper.png" alt="Paper"></button>
+                <button id="scissors"><img src="img/scissors.png" alt="Scissors"></button>
+            </div>
+        </div>
+    </div>
+    <div id="mid">
+        <button id="newGame" class="hide"><img src="img/newGame.png" alt="New Game"></button>
+        <div id="faceOff">
+            <img id="playerSelection">
+            <div id="comparator"></div>
+            <img id="computerSelection">
+            <!-- add inidcator of who won the round
+             show coices each combatant made
+             use greater than or less than sign to indicate winner of round -->
+        </div>
+    </div>
+    <div id="computer">
+        <div id="computer-items">
+            <img src="img/computer.png" alt="Computer Avatar" class="avatar">
+            <div id="computerScore" class="score">0</div>
+            <div class="buttons">
+                <button id="rock"><img src="img/rock.png" alt="Rock"></button>
+                <button id="paper"><img src="img/paper.png" alt="Paper"></button>
+                <button id="scissors"><img src="img/scissors.png" alt="Scissors"></button>
+            </div>
+        </div>
+    </div>
+    <div id="computerWin"></div>
 </body>
+
+<script src="main.js"></script>
 
 </html>

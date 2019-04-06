@@ -1,0 +1,98 @@
+* {
+    background-color: rgba(201,201,201,1);
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 300px;
+}
+
+#playerWin {
+    font-size: 50px;
+    justify-self: right;
+}
+
+#computerWin {
+    font-size: 50px;
+    justify-self: left;
+}
+
+#player {
+    display: grid;
+    justify-items: end;
+    grid-gap: 20px;
+}
+
+#computer {
+    display: grid;
+    justify-items: start;
+}
+
+#player-items, #computer-items {
+    display: grid;
+    justify-items: center;
+    grid-gap: 20px;
+}
+
+button:focus {
+    outline: none;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+#rock, #paper, #scissors {
+    transform: rotate(90deg);
+    border: none;
+}
+
+#newGame {
+    border: none;
+}
+
+.avatar {
+    height: 100px;
+    widows: 100%;
+}
+
+#computer #rock, #computer #paper, #computer #scissors {
+    transform: scaleX(-1) rotate(90deg);
+}
+
+.score {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+#newGame img {
+    height: 200px;
+}
+
+#mid {
+    display: grid;
+}
+
+#faceOff {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center center;
+}
+
+#playerSelection {
+    transform: rotate(90deg);
+}
+
+#computerSelection {
+    transform: scaleX(-1) rotate(90deg);
+}
+
+#comparator {
+    font-size: 50px;
+}
+
+#playerSelection, #comparator, #computerSelection {
+    display: inline;
+}
